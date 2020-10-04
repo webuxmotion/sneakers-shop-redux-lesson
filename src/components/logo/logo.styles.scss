@@ -1,0 +1,20 @@
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 45px;
+  font-weight: bold;
+
+  &--theme {
+
+    &--dark {
+      color: black;
+    }
+  }
+
+  &--size {
+
+    &--small {
+      font-size: 35px;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../vars.scss';
+
+.top-title {
+  padding: 40px $spacing-x;
+  background-color: #EFEFEF;
+  
+  &__h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 27px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,37 @@
+@import '../../vars.scss';
+
+.featured {
+
+  &__header {
+    text-align: center;
+  }
+  
+  &__action {
+    color: black;
+    font-size: 13px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid gray;
+    font-weight: bold;
+    margin-top: 30px;
+    display: inline-block;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+      border-bottom-color: $primary-color;
+    }
+  }
+
+  &__list {
+    display: flex;
+    padding-top: 20px;
+  }
+
+  &__item {
+    width: 20%;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+}

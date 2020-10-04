@@ -1,0 +1,14 @@
+.brands {
+  padding: 0 20px;
+  
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    width: 25%;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+}

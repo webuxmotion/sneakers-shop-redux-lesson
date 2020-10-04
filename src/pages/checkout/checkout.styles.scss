@@ -1,0 +1,35 @@
+@import '../../vars.scss';
+
+.checkout-page {
+  padding-bottom: 50px;
+
+  &__body {
+    width: 700px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  &__list {
+    padding: $spacing-x;
+  }
+
+  &__total {
+    font-size: 20px;
+  }
+
+  &__total-title {
+    margin-right: 20px;
+  }
+
+  &__total-value {
+    font-weight: bold;
+  }
+
+  &__button-wrapper {
+    padding-top: 20px;
+  }
+
+  &__footer {
+    padding: 0 $spacing-x;
+  }
+}

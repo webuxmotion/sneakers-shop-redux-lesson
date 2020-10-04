@@ -1,0 +1,69 @@
+@import '../../vars.scss';
+
+.brand-item {
+
+  &__image-wrapper {
+    padding-bottom: 130%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    &:hover {
+
+      .brand-item {
+
+        &__image-bg {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+  
+  &__image-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    transition: 2s;
+  }
+
+  &__info {
+    padding-top: 15px;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+    font-size: 21px;
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &__columns {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+  }
+
+  &__counter {
+    font-size: 15px;
+  }
+
+  &__bottom-link {
+    font-size: 15px;
+    color: black;
+    transition: 0.3s;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

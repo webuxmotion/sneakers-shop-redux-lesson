@@ -1,0 +1,16 @@
+@import '../../../../vars.scss';
+
+.products-page-products-wrapper {
+  padding: 40px $spacing-x;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    width: 25%;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+}

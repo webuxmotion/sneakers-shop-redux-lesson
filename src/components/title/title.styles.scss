@@ -1,0 +1,26 @@
+@import '../../vars.scss';
+
+.title {
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 27px;
+  margin: 0;
+  text-align: center;
+
+  &--theme {
+
+    &--dark {
+      color: black;
+    }
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: $primary-color;
+    margin: 16px auto 0;
+  }
+}
