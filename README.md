@@ -1,4 +1,70 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Этот проект был сделан при помощи [Create React App](https://github.com/facebook/create-react-app).
+
+# Sneakers Shop Redux Lesson - Пошаговое руководство по использованию REDUX в проекте на ReactJS
+
+1. Устанавливаем node_modules
+
+### `yarn`
+
+2. Устанавливем redux и две другие зависимости
+
+### `yarn add redux react-redux redux-logger`
+
+3. Запускаем проект в браузере
+
+### `yarn start`
+
+4. В файле src/index.js оборачиваем BrowserRouter в Provider
+
+Для этого нужно импортировать Provider
+
+`import { Provider } from 'react-redux';`jsx
+
+Затем обернуть с помощью него BrowserRouter.
+
+Было:
+
+```jsx
+<React.StrictMode>
+  <BrowserRouter>
+    <ScrollToTop />
+    <App />
+  </BrowserRouter>
+</React.StrictMode>,
+```
+```jsx
+<React.StrictMode>
+  <Provider> // <- наш провайдер
+    <BrowserRouter>
+      <ScrollToTop />
+      <App />
+    </BrowserRouter>
+  </Provider> // <- а здесь он закрывается))
+</React.StrictMode>,
+```
+
+Теперь нужно в Provider передать наш store.
+
+Переходим к пункту 5.
+
+5. В папке src создаем папку redux
+
+6. В папке src/redux создаем файл store.js
+
+Вот его содержимое:
+
+```jsx
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+
+import rootReducer from './root-reducer';
+
+const middlewares = [logger];
+
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
+
+export default store;
+```
 
 ## Available Scripts
 
