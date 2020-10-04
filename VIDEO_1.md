@@ -1,5 +1,3 @@
-Видео 1 - https://youtube.com
-
 1. Устанавливаем node_modules
 
 ### `yarn`
