@@ -18,13 +18,13 @@
 
 Для этого нужно импортировать Provider
 
-`import { Provider } from 'react-redux';`jsx
+`import { Provider } from 'react-redux';`
 
 Затем обернуть с помощью него BrowserRouter.
 
 Было:
 
-```jsx
+```html
 <React.StrictMode>
   <BrowserRouter>
     <ScrollToTop />
@@ -32,7 +32,7 @@
   </BrowserRouter>
 </React.StrictMode>,
 ```
-```jsx
+```html
 <React.StrictMode>
   <Provider> // <- наш провайдер
     <BrowserRouter>
@@ -64,6 +64,119 @@ const middlewares = [logger];
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 export default store;
+```
+
+7. В папку src/redux создаем файл root-reducer.jsx
+
+Вот его содержимое. Копируем и вставляем.
+
+```jsx
+import { combineReducers } from 'redux';
+
+import cartReducer from './cart/cart.reducer';
+
+export default combineReducers({
+  cart: cartReducer
+});
+```
+
+8. В нашей папке redux создаем папки cart
+
+9. В папке src/redux/cart создаем файл cart.reducer.js
+
+```jsx
+import CartActionTypes from './cart.types';
+import { addItemToCart } from './cart.utils';
+
+const INITIAL_STATE = {
+  cartItems: []
+}
+
+const cartReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case CartActionTypes.ADD_ITEM:
+      return {
+        ...state,
+        cartItems: addItemToCart(state.cartItems, action.payload)
+      }
+
+    default:
+      return state;
+  }
+}
+
+export default cartReducer;
+```
+
+10. Рядом с ним создаем файл cart.utils.js
+
+```js
+export const addItemToCart = (cartItems, cartItemToAdd) => {
+  const existingCartItem = cartItems.find(
+    cartItem => cartItem.id === cartItemToAdd.id
+  );
+
+  if (existingCartItem) {
+    return cartItems.map(cartItem => 
+      cartItem.id === cartItemToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1}
+        : cartItem
+    );
+  }
+
+  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+}
+```
+
+11. Создаем файл cart.types.js
+
+```js
+const CartActionTypes = {
+  ADD_ITEM: 'ADD_ITEM',
+}
+
+export default CartActionTypes;
+```
+
+12. Создаем файл cart.actions.js
+
+```js
+import CartActionTypes from './cart.types';
+
+export const addItem = item => ({
+  type: CartActionTypes.ADD_ITEM,
+  payload: item
+});
+```
+
+13. Подготовка нашего стора окончена. А нет, теперь нужно передать store в Provider
+
+Открываем файл src/index.js
+
+Импортируем store
+
+`import store from './redux/store';`
+
+И передаем его как параметр в Provider
+
+Было:
+```js
+<Provider>
+  <BrowserRouter>
+    <ScrollToTop />
+    <App />
+  </BrowserRouter>
+</Provider>
+```
+
+Стало:
+```
+<Provider store={store}>
+  <BrowserRouter>
+    <ScrollToTop />
+    <App />
+  </BrowserRouter>
+</Provider>
 ```
 
 ## Available Scripts
