@@ -34,12 +34,12 @@
 ```
 ```html
 <React.StrictMode>
-  <Provider> // <- наш провайдер
+  <Provider> 
     <BrowserRouter>
       <ScrollToTop />
       <App />
     </BrowserRouter>
-  </Provider> // <- а здесь он закрывается))
+  </Provider>
 </React.StrictMode>,
 ```
 
