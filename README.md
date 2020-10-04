@@ -2,6 +2,10 @@
 
 # Sneakers Shop Redux Lesson - Пошаговое руководство по использованию REDUX в проекте на ReactJS
 
+### Видео 1. Клонирование проекта, установка зависимостей и запуск проекта.
+
+Ссылка здесь - [Видео 1](https://github.com/webuxmotion/sneakers-shop-redux-lesson/edit/main/README.md)
+
 1. Устанавливаем node_modules
 
 ### `yarn`
