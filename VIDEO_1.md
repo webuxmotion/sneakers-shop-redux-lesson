@@ -1,4 +1,4 @@
-Видео 1 - [Ссылка на видео в Youtube](https://youtube.com)
+Видео 1 - https://youtube.com
 
 1. Устанавливаем node_modules
 
