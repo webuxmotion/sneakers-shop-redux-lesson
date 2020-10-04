@@ -80,7 +80,7 @@ export default combineReducers({
 });
 ```
 
-8. В нашей папке redux создаем папки cart
+8. В нашей папке redux создаем папку cart
 
 9. В папке src/redux/cart создаем файл cart.reducer.js
 
@@ -183,7 +183,11 @@ export const addItem = item => ({
 
 `import { connect } from 'react-redux';`
 
-15. В конце файла перед экспортом создаем функцию mapDispatchToProps
+15. Импортируем функцию addItem из cart.actions.js
+
+`import { addItem } from '../../redux/cart/cart.actions';`
+
+16. В конце файла перед экспортом создаем функцию mapDispatchToProps
 
 ```js
 const mapDispatchToProps = dispatch => ({
@@ -191,7 +195,7 @@ const mapDispatchToProps = dispatch => ({
 })
 ```
 
-16. Оборачиваем export в connect
+17. Оборачиваем export в connect
 
 Было:
 
@@ -205,7 +209,7 @@ export default ProductCard;
 export default connect(null, mapDispatchToProps)(ProductCard);
 ```
 
-17. Прокидываем параметр addItem в аргумент функции ProductCard
+18. Прокидываем параметр addItem в аргумент функции ProductCard
 
 Было:
 ```js
@@ -217,7 +221,7 @@ const ProductCard = ({ item }) => {
 const ProductCard = ({ item, addItem }) => {
 ```
 
-18. Добавляем отработчик клика на кнопку `+ Add to cart`
+19. Добавляем отработчик клика на кнопку `+ Add to cart`
 
 Было:
 ```html
@@ -229,5 +233,5 @@ const ProductCard = ({ item, addItem }) => {
 <Button onClick={() => addItem(item)}>+ Add to cart</Button>
 ```
 
-19. Готово. Надимаем на кнопку и смотрим в консоль. Видим, что в наш store добавляются новые товары.
+20. Готово. Надимаем на кнопку и смотрим в консоль. Видим, что в наш store добавляются новые товары.
 
