@@ -10,12 +10,18 @@ $ cd sneakers-shop-redux-lesson
 
 1. Устанавливаем node_modules
 
-`$ yarn`
+```
+$ yarn
+```
 
 2. Устанавливем redux и две другие зависимости
 
-`$ yarn add redux react-redux redux-logger`
+```
+$ yarn add redux react-redux redux-logger
+```
 
 3. Запускаем проект в браузере
 
-`$ yarn start`
+```
+$ yarn start
+```
