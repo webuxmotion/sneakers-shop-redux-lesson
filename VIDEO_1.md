@@ -6,6 +6,7 @@ $ git clone https://github.com/webuxmotion/sneakers-shop-redux-lesson.git
 
 $ cd sneakers-shop-redux-lesson
 ```
+Затем проходим 3 шага:
 
 1. Устанавливаем node_modules
 
