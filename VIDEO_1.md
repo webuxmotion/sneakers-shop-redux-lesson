@@ -1,13 +1,17 @@
 # Видео 1. Клонирование проекта, установка зависимостей и запуск проекта.
 
-1. Устанавливаем node_modules
+1. Клонируем проект
+
+### `git clone https://github.com/webuxmotion/sneakers-shop-redux-lesson.git`
+
+2. Устанавливаем node_modules
 
 ### `yarn`
 
-2. Устанавливем redux и две другие зависимости
+3. Устанавливем redux и две другие зависимости
 
 ### `yarn add redux react-redux redux-logger`
 
-3. Запускаем проект в браузере
+4. Запускаем проект в браузере
 
 ### `yarn start`
