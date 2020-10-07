@@ -52,7 +52,7 @@ const store = createStore(rootReducer, applyMiddleware(...middlewares));
 export default store;
 ```
 
-4. В папку src/redux создаем файл root-reducer.jsx
+4. В папку src/redux создаем файл root-reducer.js
 
 Вот его содержимое. Копируем и вставляем.
 
