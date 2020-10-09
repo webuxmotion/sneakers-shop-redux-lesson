@@ -40,7 +40,12 @@ const CartButton = ({ onClick, theme, itemsCount }) => {
 import { connect } from 'react-redux';
 ```
 
-2.2 Создаем функцию mapStateToProps внизу файла (перед экспортом)
+2.2 Удаляем ненужный импорт (удаляем эту строчку целиком)
+```js
+import CART_ITEMS, { total } from '../../data/cart-items.data';
+```
+
+2.3 Создаем функцию mapStateToProps внизу файла (перед экспортом)
 ```js
 const mapStateToProps = ({ cart: { cartItems }}) => ({
   items: cartItems,
@@ -48,19 +53,19 @@ const mapStateToProps = ({ cart: { cartItems }}) => ({
 });
 ```
 
-2.3 Оборачиваем Cart в функцию connect в экспорте, передаем в connect mapStateToProps
+2.4 Оборачиваем Cart в функцию connect в экспорте, передаем в connect mapStateToProps
 ```js
 export default withRouter(
   connect(mapStateToProps)(Cart)
 );
 ```
 
-2.4 Добавляем items и total в список принимаемых параметров функции Cart
+2.5 Добавляем items и total в список принимаемых параметров функции Cart
 ```js
 const Cart = ({ open, setIsOpenCart, history, items, total }) => {
 ```
 
-2.5 Выводим items и total в нужных компонентах
+2.6 Выводим items и total в нужных компонентах
 ```js
 <div className='cart__list'>
   {
@@ -73,51 +78,18 @@ const Cart = ({ open, setIsOpenCart, history, items, total }) => {
 <span className="cart__total-value">${total}.00</span>
 ```
 
-2.6 Удаляем ненужный импорт
+## 3. Подготовка redux к удалению товаров из корзины
 
+Открываем файл src/redux/cart/**cart.types.js**:
+
+3.1 Добавляем свойство REMOVE_ITEM в объект CartActionTypes
 ```js
-import CART_ITEMS, { total } from '../../data/cart-items.data';
+REMOVE_ITEM: 'REMOVE_ITEM',
 ```
 
-## 3. Удаление товаров из корзины
+Открываем файл src/redux/cart/**cart.actions.js**:
 
-В файле src/components/cart-item/**cart-item.component.js** делаем шаги:
-
-3.1 Импортируем функцию connect
-```js
-import { connect } from 'react-redux';
-```
-
-3.2 Создаем функцию mapDispatchToProps внизу файла (перед экспортом)
-```js
-const mapDispatchToProps = dispatch => ({
-  removeItem: id => dispatch(removeItemById(id))
-});
-```
-
-3.3 Оборачиваем CartItem в функцию connect в экспорте, передаем в connect первым аргументом *null*, а вторым аргументом mapDispatchToProps
-```js
-export default connect(null, mapDispatchToProps)(CartItem);
-```
-
-3.4 Импортируем removeItemById из файла cart.actions.js
-```js
-import { removeItemById } from '../../redux/cart/cart.actions';
-```
-
-3.5 Добавляем removeItem в список принимаемых параметров функции CartItem
-```js
-const CartItem = ({ item, counter, removeItem }) => {
-```
-
-3.6 Добавляем обработчик события для кнопки DeleteIcon
-```js
-<DeleteIcon className="cart-item__delete-icon" onClick={() => removeItem(item.id)} />
-```
-
-Теперь работаем с файлом src/redux/cart/**cart.actions.js**:
-
-3.7 Добавляем action removeItemById
+3.2 Добавляем action removeItemById
 ```js
 export const removeItemById = id => ({
   type: CartActionTypes.REMOVE_ITEM,
@@ -125,11 +97,63 @@ export const removeItemById = id => ({
 });
 ```
 
-Теперь работаем с файлом src/redux/cart/**cart.types.js**:
+Открываем файл src/redux/cart/**cart.utils.js**:
 
-3.8 Добавляем свойство REMOVE_ITEM в объект CartActionTypes
+3.3 Добавляем функцию removeItemFromCart
 ```js
-REMOVE_ITEM: 'REMOVE_ITEM',
+export const removeItemFromCart = (cartItems, id) => cartItems.filter(item => item.id !== id);
+```
+
+Открываем файл src/redux/cart/**cart.reducer.js**:
+
+3.4 Импортируем removeItemFromCart из cart.utils.js
+```js
+import { addItemToCart, removeItemFromCart } from './cart.utils';
+```
+
+3.5 Добавляем новый case в switch
+```js
+case CartActionTypes.REMOVE_ITEM:
+  return {
+    ...state,
+    cartItems: removeItemFromCart(state.cartItems, action.payload)
+  }
+```
+
+## 4. Удаление товаров из корзины
+
+В файле src/components/cart-item/**cart-item.component.js** делаем шаги:
+
+4.1 Импортируем функцию connect
+```js
+import { connect } from 'react-redux';
+```
+
+4.2 Создаем функцию mapDispatchToProps внизу файла (перед экспортом)
+```js
+const mapDispatchToProps = dispatch => ({
+  removeItem: id => dispatch(removeItemById(id))
+});
+```
+
+4.3 Оборачиваем CartItem в функцию connect в экспорте, передаем в connect первым аргументом *null*, а вторым аргументом mapDispatchToProps
+```js
+export default connect(null, mapDispatchToProps)(CartItem);
+```
+
+4.4 Импортируем removeItemById из файла cart.actions.js
+```js
+import { removeItemById } from '../../redux/cart/cart.actions';
+```
+
+4.5 Добавляем removeItem в список принимаемых параметров функции CartItem
+```js
+const CartItem = ({ item, counter, removeItem }) => {
+```
+
+4.6 Добавляем обработчик события для кнопки DeleteIcon
+```js
+<DeleteIcon className="cart-item__delete-icon" onClick={() => removeItem(item.id)} />
 ```
 
 ## Готово!
