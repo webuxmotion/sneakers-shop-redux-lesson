@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { removeItemById } from '../../redux/cart/cart.actions';
 
 import { ReactComponent as DeleteIcon } from '../../assets/icons/close.svg';
 
 import './cart-item.styles.scss';
 
-const CartItem = ({ item, counter }) => {
+const CartItem = ({ item, counter, removeItem }) => {
   const { image, price, quantity, name } = item;
   
   return (
@@ -34,10 +37,14 @@ const CartItem = ({ item, counter }) => {
         }
       </div>
       <span className="cart-item__delete-button">
-        <DeleteIcon className="cart-item__delete-icon" />
+        <DeleteIcon className="cart-item__delete-icon" onClick={() => removeItem(item.id)} />
       </span>
     </div>
   );
 };
 
-export default CartItem;
+const mapDispatchToProps = dispatch => ({
+  removeItem: id => dispatch(removeItemById(id))
+});
+
+export default connect(null, mapDispatchToProps)(CartItem);

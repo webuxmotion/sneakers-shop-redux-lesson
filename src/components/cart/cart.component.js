@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import CART_ITEMS, { total } from '../../data/cart-items.data';
+import { connect } from 'react-redux';
 
 import CartItem from '../cart-item/cart-item.component';
 import Button from '../button/button.component';
@@ -9,7 +9,7 @@ import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg';
 
 import './cart.styles.scss';
 
-const Cart = ({ open, setIsOpenCart, history }) => {
+const Cart = ({ open, setIsOpenCart, history, items, total }) => {
   let classes = 'cart';
 
   if (open) {
@@ -27,7 +27,7 @@ const Cart = ({ open, setIsOpenCart, history }) => {
         </div>
         <div className='cart__list'>
           {
-            CART_ITEMS.map(item => <CartItem key={item.id} item={item} />)
+            items.map(item => <CartItem key={item.id} item={item} />)
           }
         </div>
         <div className='cart__footer'>
@@ -49,4 +49,11 @@ const Cart = ({ open, setIsOpenCart, history }) => {
   )
 };
 
-export default withRouter(Cart);
+const mapStateToProps = ({ cart: { cartItems }}) => ({
+  items: cartItems,
+  total: cartItems.reduce((acc, item) => acc += item.price * item.quantity, 0)
+});
+
+export default withRouter(
+  connect(mapStateToProps)(Cart)
+);

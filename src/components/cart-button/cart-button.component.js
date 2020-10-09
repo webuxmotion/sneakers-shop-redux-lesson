@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { ReactComponent as ShoppingIcon } from '../../assets/icons/shopping-bag.svg';
 
 import './cart-button.styles.scss';
 
-const CartButton = ({ onClick, theme }) => {
+const CartButton = ({ onClick, theme, itemsCount }) => {
   let classes = 'cart-button';
 
   if (theme) {
@@ -14,9 +15,13 @@ const CartButton = ({ onClick, theme }) => {
   return (
     <div className={classes} onClick={onClick}>
       <ShoppingIcon className="cart-button__icon" />
-      <span className="cart-button__counter">20</span>
+      <span className="cart-button__counter">{itemsCount}</span>
     </div>
   )
 };
 
-export default CartButton;
+const mapStateToProps = state => ({
+  itemsCount: state.cart.cartItems.reduce((acc, item) => acc += item.quantity, 0)
+});
+
+export default connect(mapStateToProps)(CartButton);
