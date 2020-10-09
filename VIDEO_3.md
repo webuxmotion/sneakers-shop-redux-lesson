@@ -73,7 +73,7 @@ const Cart = ({ open, setIsOpenCart, history, items, total }) => {
 <span className="cart__total-value">${total}.00</span>
 ```
 
-3.5 Удаляем лишний теперь уже не нужный импорт
+2.6 Удаляем ненужный импорт
 
 ```js
 import CART_ITEMS, { total } from '../../data/cart-items.data';
