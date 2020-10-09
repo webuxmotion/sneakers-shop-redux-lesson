@@ -73,6 +73,12 @@ const Cart = ({ open, setIsOpenCart, history, items, total }) => {
 <span className="cart__total-value">${total}.00</span>
 ```
 
+3.5 Удаляем лишний теперь уже не нужный импорт
+
+```js
+import CART_ITEMS, { total } from '../../data/cart-items.data';
+```
+
 ## 3. Удаление товаров из корзины
 
 В файле src/components/cart-item/**cart-item.component.js** делаем шаги:
