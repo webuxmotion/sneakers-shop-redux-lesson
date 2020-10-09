@@ -129,10 +129,7 @@ export const removeItemById = id => ({
 
 3.8 Добавляем свойство REMOVE_ITEM
 ```js
-const CartActionTypes = {
-  ADD_ITEM: 'ADD_ITEM',
-  REMOVE_ITEM: 'REMOVE_ITEM',
-}
+REMOVE_ITEM: 'REMOVE_ITEM',
 ```
 
 ## Готово!
