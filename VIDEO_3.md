@@ -127,7 +127,7 @@ export const removeItemById = id => ({
 
 Теперь работаем с файлом src/redux/cart/**cart.types.js**:
 
-3.8 Добавляем свойство REMOVE_ITEM
+3.8 Добавляем свойство REMOVE_ITEM в объект CartActionTypes
 ```js
 REMOVE_ITEM: 'REMOVE_ITEM',
 ```
