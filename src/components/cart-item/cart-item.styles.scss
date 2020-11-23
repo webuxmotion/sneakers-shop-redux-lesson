@@ -5,15 +5,12 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   display: flex;
 
-  &__image-column {
-    width: 100px;
-  }
-
   &__image-wrapper {
     padding-bottom: 110%;
     position: relative;
     display: block;
     overflow: hidden;
+    width: 100px;
   }
   
   &__image-bg {
@@ -51,6 +48,8 @@
     width: 20px;
     height: 20px;
     display: flex;
+    flex-shrink: 0;
+    box-sizing: border-box;
     align-items: center;
     justify-content: center;
     border: 1px solid gray;

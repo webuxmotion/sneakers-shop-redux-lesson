@@ -12,7 +12,7 @@ const CartItem = ({ item, counter, removeItem }) => {
   
   return (
     <div className="cart-item">
-      <div className="cart-item__image-column">
+      <div>
         <div className="cart-item__image-wrapper">
           <div className="cart-item__image-bg" style={{
             backgroundImage: `url(/images/${image})`
@@ -36,8 +36,8 @@ const CartItem = ({ item, counter, removeItem }) => {
           ) : null
         }
       </div>
-      <span className="cart-item__delete-button">
-        <DeleteIcon className="cart-item__delete-icon" onClick={() => removeItem(item.id)} />
+      <span className="cart-item__delete-button" onClick={() => removeItem(item.id)}>
+        <DeleteIcon className="cart-item__delete-icon" />
       </span>
     </div>
   );
