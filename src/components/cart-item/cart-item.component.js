@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { removeItemById } from '../../redux/cart/cart.actions';
+import { addItem, removeItemById, decreaseItem } from '../../redux/cart/cart.actions';
 
 import { ReactComponent as DeleteIcon } from '../../assets/icons/close.svg';
 
 import './cart-item.styles.scss';
 
-const CartItem = ({ item, counter, removeItem }) => {
+const CartItem = ({ item, counter, removeItem, decreaseItem, addItem }) => {
   const { image, price, quantity, name } = item;
   
   return (
@@ -29,9 +29,9 @@ const CartItem = ({ item, counter, removeItem }) => {
         {
           counter ? (
             <div className="cart-item__counter">
-              <span className="cart-item__counter-button">-</span>
+              <span className="cart-item__counter-button" onClick={() => decreaseItem(item.id)}>-</span>
               <span className="cart-item__counter-value">{quantity}</span>
-              <span className="cart-item__counter-button">+</span>
+              <span className="cart-item__counter-button" onClick={() => addItem(item)}>+</span>
             </div>
           ) : null
         }
@@ -44,7 +44,9 @@ const CartItem = ({ item, counter, removeItem }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  removeItem: id => dispatch(removeItemById(id))
+  removeItem: id => dispatch(removeItemById(id)),
+  decreaseItem: id => dispatch(decreaseItem(id)),
+  addItem: item => dispatch(addItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(CartItem);
