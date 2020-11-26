@@ -1,6 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { selectCartItems, selectCartItemsTotal } from '../../redux/cart/cart.selectors';
 
 import CartItem from '../cart-item/cart-item.component';
 import Button from '../button/button.component';
@@ -49,9 +52,9 @@ const Cart = ({ open, setIsOpenCart, history, items, total }) => {
   )
 };
 
-const mapStateToProps = ({ cart: { cartItems }}) => ({
-  items: cartItems,
-  total: cartItems.reduce((acc, item) => acc += item.price * item.quantity, 0)
+const mapStateToProps = createStructuredSelector({
+  items: selectCartItems,
+  total: selectCartItemsTotal
 });
 
 export default withRouter(

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
+
 import { ReactComponent as ShoppingIcon } from '../../assets/icons/shopping-bag.svg';
 
 import './cart-button.styles.scss';
@@ -21,7 +23,7 @@ const CartButton = ({ onClick, theme, itemsCount }) => {
 };
 
 const mapStateToProps = state => ({
-  itemsCount: state.cart.cartItems.reduce((acc, item) => acc += item.quantity, 0)
+  itemsCount: selectCartItemsCount(state)
 });
 
 export default connect(mapStateToProps)(CartButton);
